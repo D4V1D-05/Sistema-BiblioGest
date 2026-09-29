@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioGest - Gestión y Registro de Lectores</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/Lectores.css}" href="/css/Lectores.css">
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand fw-bold d-flex align-items-center" th:href="@{/}">
+        <i class="bi bi-book-half text-primary fs-4 me-2"></i> BiblioGest
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}"><i class="bi bi-speedometer2 me-1"></i> Inicio</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="bi bi-journals me-1"></i> Operaciones
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" th:href="@{/prestamos/registrar}">Realizar Préstamos</a></li>
+              <li><a class="dropdown-item" th:href="@{/prestamos/devolucion}">Marcar Devolución</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" th:href="@{/prestamos/estado}">Estado</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-journals me-1"></i> Inventario
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" th:href="@{/inventario}">Libros</a></li>
+              <li><a class="dropdown-item" th:href="@{/libros/nuevo}">Nuevo Libro</a></li>
+              <li><a class="dropdown-item" th:href="@{/inventario/ingreso}">Ingreso de Libros</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" th:href="@{/lectores}"><i class="bi bi-people me-1"></i> Lectores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/reportes}"><i class="bi bi-bar-chart-line me-1"></i> Métricas & Reportes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/novedades}"><i class="bi bi-megaphone me-1"></i> Novedades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/contacto}"><i class="bi bi-envelope me-1"></i> Contacto</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center text-white">
+          <div class="me-3 text-end d-none d-md-block">
+            <div class="small fw-semibold">Bibliotecario / Admin</div>
+          </div>
+          <a th:href="@{/login}" class="btn btn-outline-danger btn-sm">
+            <i class="bi bi-box-arrow-right me-1"></i> Salir
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-4 flex-grow-1">
+
+    <div class="bg-white p-4 rounded-3 shadow-sm border-start border-4 border-warning mb-4">
+      <h2 class="h4 fw-bold text-dark mb-1">
+        <i class="bi bi-people-fill text-warning me-2"></i>Gestión y Registro de Lectores
+      </h2>
+      <p class="text-muted mb-0 small">Administración del padrón de usuarios, emisión de carnets y control de estados de cuenta.</p>
+    </div>
+
+    <div class="row g-4">
+
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex align-items-center">
+            <span class="badge bg-warning-subtle text-warning-emphasis p-2 fs-6 rounded me-2">
+              <i class="bi bi-person-plus-fill"></i>
+            </span>
+            <h5 class="fw-bold mb-0 text-dark fs-6">Nuevo Carnet / Lector</h5>
+          </div>
+
+          <div class="card-body p-4">
+            <form th:action="@{/lectores/guardar}" th:object="${nuevoLector}" method="post">
+
+              <div class="mb-3">
+                <label class="form-label small fw-semibold">DNI / Documento de Identidad</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="bi bi-card-heading text-muted"></i></span>
+                  <input type="text" th:field="*{dni}" class="form-control" placeholder="Ej: 72849103" required>
+                </div>
+                <small class="text-muted d-block mt-1">
+                  <i class="bi bi-info-circle me-1"></i> La contraseña inicial del lector será por defecto su número de DNI.
+                </small>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label small fw-semibold">Nombres y Apellidos</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="bi bi-person text-muted"></i></span>
+                  <input type="text" th:field="*{nombresApellidos}" class="form-control" placeholder="Ej: María García López" required>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label small fw-semibold">Correo Electrónico</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="bi bi-envelope text-muted"></i></span>
+                  <input type="email" th:field="*{correo}" class="form-control" placeholder="Ej: mgarcia@correo.pe" required>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label small fw-semibold">Teléfono de Contacto</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-light"><i class="bi bi-telephone text-muted"></i></span>
+                  <input type="text" th:field="*{telefono}" class="form-control" placeholder="Ej: 987654321">
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">
+                <i class="bi bi-person-plus me-1"></i> Registrar Lector
+              </button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header bg-white border-0 pt-4 px-4 pb-3">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mb-3">
+              <h5 class="fw-bold mb-0 text-dark fs-6">
+                <i class="bi bi-person-vcard text-primary me-2"></i>Directorio de Lectores Registrados
+              </h5>
+              <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2">
+                Total: <span th:text="${lectores.size()}"></span> Lectores
+              </span>
+            </div>
+          </div>
+
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th scope="col" class="ps-3">N° Carnet / DNI</th>
+                    <th scope="col">Nombre Completo</th>
+                    <th scope="col" class="text-center">Préstamos Activos</th>
+                    <th scope="col" class="text-center">Estado de Cuenta</th>
+                    <th scope="col" class="text-center pe-3">Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr th:each="lec : ${lectores}">
+                    <td class="ps-3 fw-semibold text-primary font-monospace" th:text="${lec.dni}"></td>
+                    <td>
+                      <div class="fw-semibold text-dark" th:text="${lec.nombresApellidos}"></div>
+                      <small class="text-muted" th:text="${lec.correo}"></small>
+                    </td>
+                    <td class="text-center">
+                      <span class="badge bg-light text-dark border" th:text="${lec.prestamosActivos + ' / 3'}"></span>
+                    </td>
+                    <td class="text-center">
+                      <span th:class="${lec.estadoCuenta == 'Habilitado' ? 'badge bg-success px-2 py-1' : (lec.estadoCuenta == 'Límite alcanzado' ? 'badge bg-warning text-dark px-2 py-1' : 'badge bg-danger px-2 py-1')}" 
+                            th:text="${lec.estadoCuenta}"></span>
+                    </td>
+                    <td class="text-center pe-3">
+                      <button type="button" class="btn btn-outline-secondary btn-sm me-1" 
+                              data-bs-toggle="modal" 
+                              th:data-bs-target="'#modalEditar-' + ${lec.dni}" title="Editar Lector">
+                          <i class="bi bi-pencil-square"></i>
+                      </button>
+                      <button th:if="${lec.estadoCuenta == 'Con Mora / Sanción'}" 
+                              type="button" class="btn btn-outline-danger btn-sm" 
+                              data-bs-toggle="modal" 
+                              th:data-bs-target="'#modalSancion-' + ${lec.dni}">
+                          <i class="bi bi-shield-check me-1"></i> Levantar Sanción
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card-footer bg-white border-0 py-3 d-flex justify-content-between align-items-center">
+            <span class="text-muted small">Padrón oficial de usuarios de BiblioGest</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="bg-dark text-light text-center py-3 mt-auto">
+    <div class="text-center">
+      &copy; 2026 Biblioteca Alquiler
+    </div>
+  </footer>
+
+  <div th:each="lec : ${lectores}" class="modal fade" th:id="'modalEditar-' + ${lec.dni}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-6 fw-bold"><i class="bi bi-person-gear text-primary me-2"></i>Actualizar Datos del Lector</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form th:action="@{/lectores/actualizar}" method="post">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">DNI / Identificador</label>
+              <input type="text" name="dni" th:value="${lec.dni}" class="form-control" readonly>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Nombres y Apellidos</label>
+              <input type="text" name="nombresApellidos" th:value="${lec.nombresApellidos}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Correo Electrónico</label>
+              <input type="email" name="correo" th:value="${lec.correo}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Teléfono</label>
+              <input type="text" name="telefono" th:value="${lec.telefono}" class="form-control">
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Restablecer Contraseña (Solicitud Presencial)</label>
+              <input type="password" class="form-control" placeholder="Nueva contraseña (dejar vacío si no se modifica)">
+              <small class="text-muted" style="font-size: 0.75rem;">Si el lector solicita cambio de clave en ventanilla, ingrese la nueva contraseña aquí.</small>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary btn-sm">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div th:each="lec : ${lectores}" th:if="${lec.estadoCuenta == 'Con Mora / Sanción'}" 
+       class="modal fade" th:id="'modalSancion-' + ${lec.dni}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title fs-6 fw-bold text-danger"><i class="bi bi-shield-exclamation me-2"></i>Regularizar Estado de Cuenta</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form th:action="@{/lectores/levantar-sancion}" method="post">
+          <input type="hidden" name="dni" th:value="${lec.dni}">
+          <div class="modal-body">
+            <div class="alert alert-danger d-flex align-items-center mb-3">
+              <i class="bi bi-exclamation-triangle-fill fs-4 me-3"></i>
+              <div>
+                <strong th:text="${lec.nombresApellidos}"></strong><br>
+                <small th:text="'DNI: ' + ${lec.dni} + ' · Estado actual: Con Mora / Sanción'"></small>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Forma de Regularización / Tipo de Pago Realizado</label>
+              <select name="motivoPago" class="form-select" required>
+                <option value="" disabled selected>Seleccione una opción...</option>
+                <option value="Pago en efectivo en ventanilla">Pago en efectivo en ventanilla</option>
+                <option value="Pago por transferencia / POS presencial">Pago por transferencia / POS presencial</option>
+                <option value="Cumplimiento de días de suspensión">Cumplimiento de días de suspensión</option>
+                <option value="Condonación autorizada por administración">Condonación autorizada por administración</option>
+              </select>
+              <small class="text-muted" style="font-size: 0.75rem;">Al confirmar, la penalización quedará archivada y el lector pasará automáticamente al estado "Habilitado".</small>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-circle me-1"></i> Confirmar y Habilitar Lector</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

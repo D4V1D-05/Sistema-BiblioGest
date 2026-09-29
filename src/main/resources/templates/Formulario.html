@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioGest - Recuperación de Contraseña</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/Formulario.css}" href="/css/Formulario.css">
+</head>
+
+<body class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+
+  <div class="flex-grow-1 d-flex align-items-center justify-content-center py-4 w-100">
+    <div class="card shadow-lg border-0 login-card">
+      <div class="card-body p-4 p-md-5">
+
+        <div class="text-center mb-4">
+          <div class="login-icon mb-3">
+            <i class="bi bi-shield-lock text-primary display-5"></i>
+          </div>
+          <h3 class="fw-bold text-dark">BiblioGest</h3>
+          <p class="text-muted small mb-1 fw-semibold">Recuperación de Contraseña</p>
+          <small class="text-muted">Indica tu usuario para tramitar el restablecimiento</small>
+        </div>
+
+        <form th:action="@{/login}" method="GET">
+
+          <div class="mb-3">
+            <label for="recoveryUser" class="form-label fw-semibold small text-secondary">Usuario o Correo Registrado</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light text-secondary border-end-0"><i class="bi bi-person"></i></span>
+              <input type="text" class="form-control border-start-0" id="recoveryUser" placeholder="usuario o correo" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="recoveryDni" class="form-label fw-semibold small text-secondary">DNI del Titular</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light text-secondary border-end-0"><i class="bi bi-card-text"></i></span>
+              <input type="text" class="form-control border-start-0" id="recoveryDni" placeholder="DNI institucional" required>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="tipoCuenta" class="form-label fw-semibold small text-secondary">Tipo de Perfil / Rol</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light text-secondary border-end-0"><i class="bi bi-person-badge"></i></span>
+              <select class="form-select border-start-0" id="tipoCuenta">
+                <option selected disabled>Seleccione su rol...</option>
+                <option value="bibliotecario">Bibliotecario / Personal</option>
+                <option value="lector">Usuario Lector</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="motivoSolicitud" class="form-label fw-semibold small text-secondary">Motivo de la Solicitud (Opcional)</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light text-secondary border-end-0"><i class="bi bi-chat-left-dots"></i></span>
+              <input type="text" class="form-control border-start-0" id="motivoSolicitud" placeholder="Breve motivo del restablecimiento...">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold mb-3">
+            <i class="bi bi-send me-1"></i> Solicitar Restablecimiento
+          </button>
+
+          <div class="text-center">
+            <a th:href="@{/login}" class="text-decoration-none small text-primary">
+              <i class="bi bi-arrow-left me-1"></i> Volver a Iniciar Sesión
+            </a>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center py-3 text-white-50 small mt-auto">© 2026 Biblioteca Alquiler</footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+.table th {
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.table td {
+  font-size: 0.9rem;
+}
+
+.card {
+  transition: all 0.2s ease;
+}

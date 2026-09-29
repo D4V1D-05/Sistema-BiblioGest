@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioGest - Panel de Métricas y Análisis Operativo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/Reportes.css}" href="/css/Reportes.css">
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand fw-bold d-flex align-items-center" th:href="@{/}">
+        <i class="bi bi-book-half text-primary fs-4 me-2"></i> BiblioGest
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}"><i class="bi bi-speedometer2 me-1"></i> Inicio</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="bi bi-journals me-1"></i> Operaciones
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" th:href="@{/prestamos/registrar}">Realizar Préstamos</a></li>
+              <li><a class="dropdown-item" th:href="@{/prestamos/devolucion}">Marcar Devolución</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" th:href="@{/prestamos/estado}">Estado</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="bi bi-journals me-1"></i> Inventario
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" th:href="@{/inventario}">Libros</a></li>
+              <li><a class="dropdown-item" th:href="@{/libros/nuevo}">Nuevo Libro</a></li>
+              <li><a class="dropdown-item" th:href="@{/inventario/ingreso}">Ingreso de Libros</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/lectores}"><i class="bi bi-people me-1"></i> Lectores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" th:href="@{/reportes}"><i class="bi bi-bar-chart-line me-1"></i> Métricas & Reportes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/novedades}"><i class="bi bi-megaphone me-1"></i> Novedades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/contacto}"><i class="bi bi-envelope me-1"></i> Contacto</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center text-white">
+          <div class="me-3 text-end d-none d-md-block">
+            <div class="small fw-semibold">Bibliotecario / Admin</div>
+          </div>
+          <a th:href="@{/login}" class="btn btn-outline-danger btn-sm">
+            <i class="bi bi-box-arrow-right me-1"></i> Salir
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-4 flex-grow-1">
+
+    <div class="bg-white p-4 rounded-3 shadow-sm border-start border-4 border-info mb-4">
+      <h2 class="h4 fw-bold text-dark mb-1">
+        <i class="bi bi-bar-chart-line text-info me-2"></i>Panel de Métricas y Análisis Operativo
+      </h2>
+      <p class="text-muted mb-0 small">Monitoreo analítico del rendimiento de la biblioteca: series temporales, rotación
+        de catálogo y comportamiento de lectores.</p>
+    </div>
+
+    <div class="card border-0 shadow-sm mb-4">
+      <div class="card-body p-3">
+        <form onsubmit="return false;" class="row g-2 align-items-center">
+          <div class="col-md-4">
+            <div class="input-group input-group-sm">
+              <span class="input-group-text bg-light"><i class="bi bi-calendar3 text-muted"></i></span>
+              <select class="form-select">
+                <option value="2026" selected>Periodo: Año 2026 (Acumulado)</option>
+                <option value="2025">Periodo: Año 2025</option>
+                <option value="q3">Trimestre Actual (Q3)</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-5">
+            <div class="input-group input-group-sm">
+              <span class="input-group-text bg-light"><i class="bi bi-bookmark text-muted"></i></span>
+              <select class="form-select">
+                <option value="todas" selected>Categoría: Todas las categorías</option>
+                <option value="ingenieria">Ingeniería & Tecnología</option>
+                <option value="literatura">Literatura & Ficción</option>
+                <option value="sociales">Ciencias Sociales & Historia</option>
+                <option value="medicina">Medicina & Salud</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <button type="button" class="btn btn-primary btn-sm w-100 fw-semibold">
+              <i class="bi bi-funnel me-1"></i> Filtrar Reporte
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="text-muted small fw-semibold">Préstamos Totales</span>
+              <span class="badge bg-primary-subtle text-primary"><i class="bi bi-arrow-up-right me-1"></i>+12%</span>
+            </div>
+            <h3 class="fw-bold text-dark mb-1">1,280</h3>
+            <span class="text-muted extra-small" style="font-size: 0.78rem;">Ejemplares prestados en el año</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="text-muted small fw-semibold">Devolución a Tiempo</span>
+              <span class="badge bg-success-subtle text-success"><i class="bi bi-check-circle me-1"></i>Meta >
+                90%</span>
+            </div>
+            <h3 class="fw-bold text-dark mb-1">92.4%</h3>
+            <span class="text-muted extra-small" style="font-size: 0.78rem;">Cumplimiento de plazos globales</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="text-muted small fw-semibold">Total de Lectores</span>
+              <span class="badge bg-info-subtle text-info-emphasis"><i class="bi bi-person-plus me-1"></i>+35 este
+                mes</span>
+            </div>
+            <h3 class="fw-bold text-dark mb-1">430</h3>
+            <span class="text-muted extra-small" style="font-size: 0.78rem;">Usuarios con carnet activo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-3">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="text-muted small fw-semibold">Libros Devueltos</span>
+              <span class="badge bg-success-subtle text-success">Retorno 89.4%</span>
+            </div>
+            <h3 class="fw-bold text-dark mb-1">1,145</h3>
+            <span class="text-muted extra-small" style="font-size: 0.78rem;">ejemplares recibidos en el año</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0 text-dark fs-6">
+              <i class="bi bi-graph-up text-primary me-2"></i>Evolución Mensual de Préstamos
+            </h5>
+            <span class="badge bg-light text-dark border">Ene - Ago</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="h5 fw-bold mb-3">1,180 <small class="text-muted fs-6 fw-normal">préstamos acumulados</small></div>
+            <div class="chart-container">
+              <svg viewBox="0 0 500 180" class="w-100" style="overflow: visible;">
+                <defs>
+                  <linearGradient id="blueGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#0d6efd" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#0d6efd" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <line x1="30" y1="150" x2="480" y2="150" stroke="#edf2f7" stroke-width="1"/>
+                <line x1="30" y1="102" x2="480" y2="102" stroke="#edf2f7" stroke-width="1" stroke-dasharray="3,3"/>
+                <line x1="30" y1="54" x2="480" y2="54" stroke="#edf2f7" stroke-width="1" stroke-dasharray="3,3"/>
+                <polygon points="40,150 40,104 101,97 163,49 224,64 286,73 347,78 409,85 470,83 470,150" fill="url(#blueGradient)"/>
+                <polyline points="40,104 101,97 163,49 224,64 286,73 347,78 409,85 470,83" fill="none" stroke="#0d6efd" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="40" cy="104" r="3.5" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+                <text x="40" y="93" text-anchor="middle" font-size="10" fill="#6c757d">95</text>
+                <circle cx="101" cy="97" r="3.5" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+                <text x="101" y="86" text-anchor="middle" font-size="10" fill="#6c757d">110</text>
+                <circle cx="163" cy="49" r="4" fill="#0d6efd" stroke="#ffffff" stroke-width="1.5"/>
+                <text x="163" y="37" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#0d6efd">210</text>
+                <circle cx="224" cy="64" r="3.5" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+                <text x="224" y="53" text-anchor="middle" font-size="10" fill="#6c757d">180</text>
+                <circle cx="286" cy="73" r="3.5" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+                <text x="286" y="62" text-anchor="middle" font-size="10" fill="#6c757d">160</text>
+                <circle cx="347" cy="78" r="3.5" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+                <text x="347" y="67" text-anchor="middle" font-size="10" fill="#6c757d">150</text>
+                <circle cx="409" cy="85" r="3.5" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+                <text x="409" y="74" text-anchor="middle" font-size="10" fill="#6c757d">135</text>
+                <circle cx="470" cy="83" r="3.5" fill="#ffffff" stroke="#0d6efd" stroke-width="2"/>
+                <text x="470" y="72" text-anchor="middle" font-size="10" fill="#6c757d">140</text>
+                <text x="40" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Ene</text>
+                <text x="101" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Feb</text>
+                <text x="163" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#0d6efd">Mar</text>
+                <text x="224" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Abr</text>
+                <text x="286" y="168" text-anchor="middle" font-size="11" fill="#6c757d">May</text>
+                <text x="347" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Jun</text>
+                <text x="409" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Jul</text>
+                <text x="470" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Ago</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0 text-dark fs-6">
+              <i class="bi bi-clock-history text-danger me-2"></i>Tasa de Morosidad Semanal
+            </h5>
+            <span class="badge bg-light text-dark border">Últimas 6 Semanas</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="h5 fw-bold mb-3 text-danger">7.1% <small class="text-muted fs-6 fw-normal">promedio de retrasos</small></div>
+            <div class="chart-container">
+              <svg viewBox="0 0 500 180" class="w-100" style="overflow: visible;">
+                <defs>
+                  <linearGradient id="redGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#dc3545" stop-opacity="0.15"/>
+                    <stop offset="100%" stop-color="#dc3545" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <line x1="30" y1="150" x2="480" y2="150" stroke="#edf2f7" stroke-width="1"/>
+                <line x1="30" y1="110" x2="480" y2="110" stroke="#edf2f7" stroke-width="1" stroke-dasharray="3,3"/>
+                <line x1="30" y1="70" x2="480" y2="70" stroke="#dc3545" stroke-width="1.2" stroke-dasharray="4,4" opacity="0.6"/>
+                <text x="475" y="64" text-anchor="end" font-size="9.5" fill="#dc3545" opacity="0.8">Límite 10%</text>
+                <polygon points="45,150 45,118 127,78 209,54 291,102 373,110 455,94 455,150" fill="url(#redGradient)"/>
+                <polyline points="45,118 127,78 209,54 291,102 373,110 455,94" fill="none" stroke="#dc3545" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="45" cy="118" r="3.5" fill="#ffffff" stroke="#dc3545" stroke-width="2"/>
+                <text x="45" y="107" text-anchor="middle" font-size="10" fill="#6c757d">4%</text>
+                <circle cx="127" cy="78" r="3.5" fill="#ffffff" stroke="#dc3545" stroke-width="2"/>
+                <text x="127" y="67" text-anchor="middle" font-size="10" fill="#6c757d">9%</text>
+                <circle cx="209" cy="54" r="4" fill="#dc3545" stroke="#ffffff" stroke-width="1.5"/>
+                <text x="209" y="42" text-anchor="middle" font-size="10.5" font-weight="bold" fill="#dc3545">12%</text>
+                <circle cx="291" cy="102" r="3.5" fill="#ffffff" stroke="#dc3545" stroke-width="2"/>
+                <text x="291" y="91" text-anchor="middle" font-size="10" fill="#6c757d">6%</text>
+                <circle cx="373" cy="110" r="3.5" fill="#ffffff" stroke="#dc3545" stroke-width="2"/>
+                <text x="373" y="99" text-anchor="middle" font-size="10" fill="#6c757d">5%</text>
+                <circle cx="455" cy="94" r="3.5" fill="#ffffff" stroke="#dc3545" stroke-width="2"/>
+                <text x="455" y="83" text-anchor="middle" font-size="10" fill="#6c757d">7%</text>
+                <text x="45" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Sem 1</text>
+                <text x="127" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Sem 2</text>
+                <text x="209" y="168" text-anchor="middle" font-size="11" font-weight="bold" fill="#dc3545">Sem 3</text>
+                <text x="291" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Sem 4</text>
+                <text x="373" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Sem 5</text>
+                <text x="455" y="168" text-anchor="middle" font-size="11" fill="#6c757d">Sem 6</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mb-4">
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0 text-dark fs-6">
+              <i class="bi bi-person-plus text-info me-2"></i>Altas de Nuevos Lectores
+            </h5>
+            <span class="badge bg-info-subtle text-info-emphasis">Trimestral</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="h5 fw-bold mb-2">+297 <small class="text-muted fs-6 fw-normal">usuarios en 2026</small></div>
+            <div class="chart-container">
+              <svg viewBox="0 0 350 140" class="w-100" style="overflow: visible;">
+                <defs>
+                  <linearGradient id="infoGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#0dcaf0" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="#0dcaf0" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <line x1="25" y1="115" x2="325" y2="115" stroke="#edf2f7" stroke-width="1"/>
+                <line x1="25" y1="75" x2="325" y2="75" stroke="#edf2f7" stroke-width="1" stroke-dasharray="3,3"/>
+                <line x1="25" y1="35" x2="325" y2="35" stroke="#edf2f7" stroke-width="1" stroke-dasharray="3,3"/>
+                <polygon points="55,115 55,45 175,66 295,84 295,115" fill="url(#infoGradient)"/>
+                <polyline points="55,45 175,66 295,84" fill="none" stroke="#0dcaf0" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="55" cy="45" r="3.5" fill="#ffffff" stroke="#0dcaf0" stroke-width="2"/>
+                <text x="55" y="34" text-anchor="middle" font-size="10" font-weight="bold" fill="#0dcaf0">+115</text>
+                <circle cx="175" cy="66" r="3.5" fill="#ffffff" stroke="#0dcaf0" stroke-width="2"/>
+                <text x="175" y="55" text-anchor="middle" font-size="10" fill="#6c757d">+98</text>
+                <circle cx="295" cy="84" r="3.5" fill="#ffffff" stroke="#0dcaf0" stroke-width="2"/>
+                <text x="295" y="73" text-anchor="middle" font-size="10" fill="#6c757d">+84</text>
+                <text x="55" y="132" text-anchor="middle" font-size="10.5" fill="#6c757d">Trimestre I</text>
+                <text x="175" y="132" text-anchor="middle" font-size="10.5" fill="#6c757d">Trimestre II</text>
+                <text x="295" y="132" text-anchor="middle" font-size="10.5" fill="#6c757d">Trimestre III</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0 text-dark fs-6">
+              <i class="bi bi-box-arrow-in-down-left text-warning me-2"></i>Flujo Mensual de Devoluciones
+            </h5>
+            <span class="badge bg-warning text-dark">Balance Q3</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="h5 fw-bold mb-2 text-warning">
+              395 <small class="text-muted fs-6 fw-normal">ejemplares devueltos</small>
+            </div>
+            <div class="chart-container">
+              <svg viewBox="0 0 350 140" class="w-100" style="overflow: visible;">
+                <defs>
+                  <linearGradient id="amberReturnGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <line x1="25" y1="115" x2="325" y2="115" stroke="#edf2f7" stroke-width="1"/>
+                <line x1="25" y1="75" x2="325" y2="75" stroke="#edf2f7" stroke-width="1" stroke-dasharray="3,3"/>
+                <line x1="25" y1="35" x2="325" y2="35" stroke="#edf2f7" stroke-width="1" stroke-dasharray="3,3"/>
+                <polygon points="55,115 55,83 175,43 295,67 295,115" fill="url(#amberReturnGradient)"/>
+                <polyline points="55,83 175,43 295,67" fill="none" stroke="#d97706" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="55" cy="83" r="3.5" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+                <text x="55" y="72" text-anchor="middle" font-size="10" font-weight="600" fill="#b45309">120</text>
+                <circle cx="175" cy="43" r="3.5" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+                <text x="175" y="32" text-anchor="middle" font-size="10" font-weight="bold" fill="#b45309">145</text>
+                <circle cx="295" cy="67" r="3.5" fill="#ffffff" stroke="#d97706" stroke-width="2"/>
+                <text x="295" y="56" text-anchor="middle" font-size="10" font-weight="600" fill="#b45309">130</text>
+                <text x="55" y="132" text-anchor="middle" font-size="10.5" fill="#6c757d">Junio</text>
+                <text x="175" y="132" text-anchor="middle" font-size="10.5" fill="#6c757d">Julio</text>
+                <text x="295" y="132" text-anchor="middle" font-size="10.5" fill="#6c757d">Agosto</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm h-100">
+          <div class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex justify-content-between align-items-center">
+            <h5 class="fw-bold mb-0 text-dark fs-6">
+              <i class="bi bi-bookmarks text-success me-2"></i>Rotación de Ejemplares por Área
+            </h5>
+            <span class="badge bg-success-subtle text-success">Frecuencia</span>
+          </div>
+          <div class="card-body p-4">
+            <div class="h5 fw-bold mb-2">Top: Ficción & Software <small class="text-muted fs-6 fw-normal">70% de salidas</small></div>
+            <div class="chart-container">
+              <svg viewBox="0 0 350 140" class="w-100" style="overflow: visible;">
+                <defs>
+                  <linearGradient id="greenGradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#198754" stop-opacity="0.2"/>
+                    <stop offset="100%" stop-color="#198754" stop-opacity="0.0"/>
+                  </linearGradient>
+                </defs>
+                <line x1="25" y1="115" x2="325" y2="115" stroke="#edf2f7" stroke-width="1"/>
+                <line x1="25" y1="75" x2="325" y2="75" stroke="#edf2f7" stroke-width="1" stroke-dasharray="3,3"/>
+                <line x1="25" y1="35" x2="325" y2="35" stroke="#edf2f7" stroke-width="1" stroke-dasharray="3,3"/>
+                <polygon points="45,115 45,39 128,51 212,79 295,91 295,115" fill="url(#greenGradient)"/>
+                <polyline points="45,39 128,51 212,79 295,91" fill="none" stroke="#198754" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="45" cy="39" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                <text x="45" y="28" text-anchor="middle" font-size="10" font-weight="bold" fill="#198754">38%</text>
+                <circle cx="128" cy="51" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                <text x="128" y="40" text-anchor="middle" font-size="10" fill="#6c757d">32%</text>
+                <circle cx="212" cy="79" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                <text x="212" y="68" text-anchor="middle" font-size="10" fill="#6c757d">18%</text>
+                <circle cx="295" cy="91" r="3.5" fill="#ffffff" stroke="#198754" stroke-width="2"/>
+                <text x="295" y="80" text-anchor="middle" font-size="10" fill="#6c757d">12%</text>
+                <text x="45" y="132" text-anchor="middle" font-size="10.5" fill="#6c757d">Lit</text>
+                <text x="128" y="132" text-anchor="middle" font-size="10.5" fill="#6c757d">Ing</text>
+                <text x="212" y="132" text-anchor="middle" font-size="10.5" fill="#6c757d">Soc</text>
+                <text x="295" y="132" text-anchor="middle" font-size="10.5" fill="#6c757d">Med</text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-end mb-4">
+      <button type="button" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-file-earmark-arrow-down me-1"></i> Exportar Reporte Consolidado (PDF / Excel)
+      </button>
+    </div>
+
+  </main>
+
+  <footer class="bg-dark text-light text-center py-3 mt-auto">
+    <div class="text-center">
+      &copy; 2026 Biblioteca Alquiler
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiblioGest - Recepción y Devolución de Libros</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/MarcarDevolucion.css}" href="/css/MarcarDevolucion.css">
+</head>
+
+<body class="bg-light d-flex flex-column min-vh-100">
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand fw-bold d-flex align-items-center" th:href="@{/}">
+        <i class="bi bi-book-half text-primary fs-4 me-2"></i> BiblioGest
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}"><i class="bi bi-speedometer2 me-1"></i> Inicio</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="bi bi-journals me-1"></i> Operaciones
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" th:href="@{/prestamos/registrar}">Realizar Préstamos</a></li>
+              <li><a class="dropdown-item active" th:href="@{/prestamos/devolucion}">Marcar Devolución</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" th:href="@{/prestamos/estado}">Estado</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="bi bi-journals me-1"></i> Inventario
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" th:href="@{/inventario}">Libros</a></li>
+              <li><a class="dropdown-item" th:href="@{/libros/nuevo}">Nuevo Libro</a></li>
+              <li><a class="dropdown-item" th:href="@{/inventario/ingreso}">Ingreso de Libros</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/lectores}"><i class="bi bi-people me-1"></i> Lectores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/reportes}"><i class="bi bi-bar-chart-line me-1"></i> Métricas & Reportes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/novedades}"><i class="bi bi-megaphone me-1"></i> Novedades</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/contacto}"><i class="bi bi-envelope me-1"></i> Contacto</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-items-center text-white">
+          <div class="me-3 text-end d-none d-md-block">
+            <div class="small fw-semibold">Bibliotecario / Admin</div>
+          </div>
+          <a th:href="@{/login}" class="btn btn-outline-danger btn-sm">
+            <i class="bi bi-box-arrow-right me-1"></i> Salir
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container my-4 flex-grow-1">
+
+    <div class="bg-white p-4 rounded-3 shadow-sm border-start border-4 border-success mb-4">
+      <h2 class="h4 fw-bold text-dark mb-1">
+        <i class="bi bi-journal-arrow-down text-success me-2"></i>Recepción y Devolución de Libros
+      </h2>
+      <p class="text-muted mb-0 small">Gestione el retorno de ejemplares prestados y actualice el estado del inventario.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+
+        <div class="card border-0 shadow-sm mb-4">
+          <div class="card-header bg-white border-0 pt-4 px-4 pb-0 d-flex align-items-center justify-content-between">
+            <div class="d-flex align-items-center">
+              <span class="badge bg-success-subtle text-success p-2 fs-6 rounded me-2">
+                <i class="bi bi-file-earmark-check"></i>
+              </span>
+              <h5 class="fw-bold mb-0 text-dark fs-6">Formulario de Conformidad de Recepción</h5>
+            </div>
+            <span class="badge bg-success-subtle text-success border border-success-subtle px-3 py-2">
+              <i class="bi bi-box-arrow-in-down-left me-1"></i>Control de Retornos
+            </span>
+          </div>
+
+          <div class="card-body p-4">
+
+            <label class="form-label small fw-semibold">Localización de Préstamo Activo</label>
+            <form th:action="@{/prestamos/devolucion}" method="get" class="mb-3">
+              <div class="input-group">
+                <input type="text" name="codigoPrestamo" 
+                       th:value="${prestamoEncontrado != null ? prestamoEncontrado.id : codigoPrestamo}" 
+                       class="form-control" placeholder="Ej: PR-8492 o DNI del lector" required>
+                <button class="btn btn-primary" type="submit">
+                  <i class="bi bi-search me-1"></i> Buscar Préstamo
+                </button>
+              </div>
+            </form>
+
+            <div th:if="${prestamoEncontrado != null}" class="alert alert-success d-flex justify-content-between align-items-center py-3 px-3 mb-3 border-0 bg-success-subtle rounded-3">
+              <div class="d-flex align-items-center">
+                <i class="bi bi-check-circle-fill text-success fs-3 me-3"></i>
+                <div>
+                  <strong class="text-dark fs-6" th:text="${prestamoEncontrado.tituloLibro}"></strong><br>
+                  <small class="text-muted">
+                    <i class="bi bi-person me-1"></i><span th:text="'Lector: ' + ${prestamoEncontrado.nombreLector} + ' (DNI: ' + ${prestamoEncontrado.dniLector} + ')'"></span>
+                    <span class="ms-2"><i class="bi bi-upc-scan me-1"></i><span th:text="'ISBN: ' + ${prestamoEncontrado.isbnLibro}"></span></span>
+                    <span class="ms-2"><i class="bi bi-ticket-perforated me-1"></i><span th:text="'ID: ' + ${prestamoEncontrado.id}"></span></span>
+                    <span class="ms-2" th:if="${prestamoEncontrado.cantidad > 1}"><i class="bi bi-layers me-1"></i><span th:text="'Cant: ' + ${prestamoEncontrado.cantidad}"></span></span>
+                  </small>
+                </div>
+              </div>
+              <span th:class="${prestamoEncontrado.estado == 'A tiempo' ? 'badge bg-success-subtle text-success border border-success-subtle px-2 py-1' : (prestamoEncontrado.estado == 'Por vencer' ? 'badge bg-warning-subtle text-warning border border-warning-subtle px-2 py-1' : 'badge bg-danger-subtle text-danger border border-danger-subtle px-2 py-1')}"
+                    th:text="${prestamoEncontrado.estado}"></span>
+            </div>
+
+            <div th:if="${errorBusqueda}" class="alert alert-danger d-flex align-items-center mb-3 alert-dismissible fade show" role="alert">
+              <i class="bi bi-exclamation-octagon-fill fs-4 me-2"></i>
+              <div>
+                <strong>Código no localizado:</strong> No se encontró ningún préstamo activo asociado al código o identificador 
+                "<span class="fw-bold" th:text="${codigoPrestamo}"></span>". Verifique la numeración o confirme si el ejemplar ya fue devuelto.
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div th:if="${prestamoEncontrado == null and !errorBusqueda}" class="alert alert-warning py-2 px-3 mb-3 border-0 small">
+              <i class="bi bi-exclamation-triangle-fill me-1"></i> No se encontró ningún préstamo activo pendiente de devolución.
+            </div>
+
+            <form th:action="@{/prestamos/devolucion/confirmar}" method="post">
+              <input type="hidden" name="idPrestamo" th:value="${prestamoEncontrado != null ? prestamoEncontrado.id : ''}">
+
+              <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold">Fecha de Devolución</label>
+                  <div class="input-group">
+                    <span class="input-group-text bg-light"><i class="bi bi-calendar-check text-muted"></i></span>
+                    <input type="date" name="fechaDevolucion" class="form-control" th:value="${fechaHoy}" th:disabled="${prestamoEncontrado == null}" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label small fw-semibold">Condición del Libro</label>
+                  <select name="condicion" class="form-select" th:disabled="${prestamoEncontrado == null}">
+                    <option value="Excelente / Intacto">Excelente / Intacto</option>
+                    <option value="Buen estado (desgaste normal)">Buen estado (desgaste normal)</option>
+                    <option value="Deteriorado / Con marcas">Deteriorado / Con marcas</option>
+                    <option value="Extraviado / Daño severo">Extraviado / Daño severo</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label small fw-semibold">Aplicación de Penalización</label>
+                <select name="penalizacion" class="form-select" th:disabled="${prestamoEncontrado == null}">
+                  <option value="Sin penalización">Sin penalización</option>
+                  <option value="Mora por retraso">Mora por retraso</option>
+                  <option value="Sanción por deterioro">Sanción por deterioro</option>
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label small fw-semibold">Observaciones / Conformidad Física (Opcional)</label>
+                <textarea name="observaciones" class="form-control" rows="2" placeholder="Detalles de la entrega, conformidad del ejemplar o novedades..." th:disabled="${prestamoEncontrado == null}"></textarea>
+              </div>
+
+              <div class="alert alert-info d-flex align-items-center gap-2 py-2 px-3 border-0 bg-info-subtle text-info-emphasis rounded-3 mb-4">
+                <i class="bi bi-info-circle-fill fs-5"></i>
+                <div class="small">
+                  Al confirmar la devolución, se repondrá automáticamente el stock disponible del libro y se actualizará el historial del lector.
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-success w-100 py-2 fw-semibold" th:disabled="${prestamoEncontrado == null}">
+                <i class="bi bi-check-circle me-1"></i> Confirmar Devolución e Ingreso a Inventario
+              </button>
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-dark text-light text-center py-3 mt-auto">
+    <div class="text-center">
+      &copy; 2026 Biblioteca Alquiler
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
