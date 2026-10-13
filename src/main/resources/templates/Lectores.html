@@ -180,20 +180,15 @@
                       <span class="badge bg-light text-dark border" th:text="${lec.prestamosActivos + ' / 3'}"></span>
                     </td>
                     <td class="text-center">
-                      <span th:class="${lec.estadoCuenta == 'Habilitado' ? 'badge bg-success px-2 py-1' : (lec.estadoCuenta == 'Límite alcanzado' ? 'badge bg-warning text-dark px-2 py-1' : 'badge bg-danger px-2 py-1')}" 
-                            th:text="${lec.estadoCuenta}"></span>
+                      <span th:if="${lec.estadoCuenta == 'Habilitado'}" class="badge bg-success">Habilitado</span>
+                      <span th:if="${lec.estadoCuenta == 'Límite alcanzado'}" class="badge bg-warning text-dark">Límite alcanzado</span>
+                      <span th:if="${lec.estadoCuenta == 'Con Mora / Sanción'}" class="badge bg-danger">Con Mora / Sanción</span>
+                      <span th:if="${lec.estadoCuenta == 'Inhabilitado'}" class="badge bg-dark text-white">Inhabilitado</span>
                     </td>
                     <td class="text-center pe-3">
-                      <button type="button" class="btn btn-outline-secondary btn-sm me-1" 
-                              data-bs-toggle="modal" 
-                              th:data-bs-target="'#modalEditar-' + ${lec.dni}" title="Editar Lector">
-                          <i class="bi bi-pencil-square"></i>
-                      </button>
-                      <button th:if="${lec.estadoCuenta == 'Con Mora / Sanción'}" 
-                              type="button" class="btn btn-outline-danger btn-sm" 
-                              data-bs-toggle="modal" 
-                              th:data-bs-target="'#modalSancion-' + ${lec.dni}">
-                          <i class="bi bi-shield-check me-1"></i> Levantar Sanción
+                      <button type="button" class="btn btn-outline-secondary btn-sm" 
+                              data-bs-toggle="modal" th:data-bs-target="'#modalEditar-' + ${lec.dni}" title="Editar Lector">
+                        <i class="bi bi-pencil-square"></i>
                       </button>
                     </td>
                   </tr>
@@ -244,53 +239,18 @@
               <input type="text" name="telefono" th:value="${lec.telefono}" class="form-control">
             </div>
             <div class="mb-3">
-              <label class="form-label small fw-semibold">Restablecer Contraseña (Solicitud Presencial)</label>
-              <input type="password" class="form-control" placeholder="Nueva contraseña (dejar vacío si no se modifica)">
-              <small class="text-muted" style="font-size: 0.75rem;">Si el lector solicita cambio de clave en ventanilla, ingrese la nueva contraseña aquí.</small>
+              <label class="form-label small fw-semibold">Estado del Lector</label>
+              <select name="estadoCuenta" class="form-select">
+                <option value="Habilitado" th:selected="${lec.estadoCuenta == 'Habilitado'}">Habilitado</option>
+                <option value="Límite alcanzado" th:selected="${lec.estadoCuenta == 'Límite alcanzado'}">Límite alcanzado</option>
+                <option value="Con Mora / Sanción" th:selected="${lec.estadoCuenta == 'Con Mora / Sanción'}">Con Mora / Sanción</option>
+                <option value="Inhabilitado" th:selected="${lec.estadoCuenta == 'Inhabilitado'}">Inhabilitado (Bloqueo total)</option>
+              </select>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-primary btn-sm">Guardar Cambios</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div th:each="lec : ${lectores}" th:if="${lec.estadoCuenta == 'Con Mora / Sanción'}" 
-       class="modal fade" th:id="'modalSancion-' + ${lec.dni}" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title fs-6 fw-bold text-danger"><i class="bi bi-shield-exclamation me-2"></i>Regularizar Estado de Cuenta</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <form th:action="@{/lectores/levantar-sancion}" method="post">
-          <input type="hidden" name="dni" th:value="${lec.dni}">
-          <div class="modal-body">
-            <div class="alert alert-danger d-flex align-items-center mb-3">
-              <i class="bi bi-exclamation-triangle-fill fs-4 me-3"></i>
-              <div>
-                <strong th:text="${lec.nombresApellidos}"></strong><br>
-                <small th:text="'DNI: ' + ${lec.dni} + ' · Estado actual: Con Mora / Sanción'"></small>
-              </div>
-            </div>
-            <div class="mb-3">
-              <label class="form-label small fw-semibold">Forma de Regularización / Tipo de Pago Realizado</label>
-              <select name="motivoPago" class="form-select" required>
-                <option value="" disabled selected>Seleccione una opción...</option>
-                <option value="Pago en efectivo en ventanilla">Pago en efectivo en ventanilla</option>
-                <option value="Pago por transferencia / POS presencial">Pago por transferencia / POS presencial</option>
-                <option value="Cumplimiento de días de suspensión">Cumplimiento de días de suspensión</option>
-                <option value="Condonación autorizada por administración">Condonación autorizada por administración</option>
-              </select>
-              <small class="text-muted" style="font-size: 0.75rem;">Al confirmar, la penalización quedará archivada y el lector pasará automáticamente al estado "Habilitado".</small>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-check-circle me-1"></i> Confirmar y Habilitar Lector</button>
           </div>
         </form>
       </div>

@@ -36,14 +36,21 @@ public class LectorService {
         repository.eliminar(dni);
     }
 
-    public void actualizarLector(String dni, String nombresApellidos, String correo, String telefono) {
+    public void actualizarLector(String dni, String nombresApellidos, String correo, String telefono, String estadoCuenta) {
         Lector lector = repository.buscarPorDni(dni);
         if (lector != null) {
             lector.setNombresApellidos(nombresApellidos);
             lector.setCorreo(correo);
             lector.setTelefono(telefono);
+            if (estadoCuenta != null && !estadoCuenta.isBlank()) {
+                lector.setEstadoCuenta(estadoCuenta);
+            }
             repository.guardar(lector);
         }
+    }
+
+    public void actualizarLector(String dni, String nombresApellidos, String correo, String telefono) {
+        actualizarLector(dni, nombresApellidos, correo, telefono, null);
     }
 
     public void levantarSancion(String dni) {

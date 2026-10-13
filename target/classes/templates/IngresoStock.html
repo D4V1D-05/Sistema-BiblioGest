@@ -114,6 +114,10 @@
                 <i class="bi bi-person me-1"></i><span th:text="'Autor: ' + ${libroEncontrado.autor}"></span>
                 <span class="ms-2"><i class="bi bi-upc-scan me-1"></i><span
                     th:text="'ISBN: ' + ${libroEncontrado.isbn}"></span></span>
+                <span class="ms-3 text-secondary">
+                  <i class="bi bi-geo-alt-fill text-danger me-1"></i>
+                  <strong>Ubicación:</strong> <span th:text="${libroEncontrado.ubicacion}"></span>
+                </span>
               </small>
             </div>
           </div>
@@ -125,28 +129,29 @@
           <input type="hidden" name="isbn" th:value="${libroEncontrado != null ? libroEncontrado.isbn : ''}">
 
           <div class="row g-3 mb-3">
-            <div class="col-md-6">
-              <label class="form-label small fw-semibold">Cantidad de Ejemplares que Ingresan</label>
+            <div class="col-md-4">
+              <label class="form-label small fw-semibold">Cantidad que Ingresa</label>
               <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-plus-slash-minus"></i></span>
-                <input type="number" name="cantidadIngreso" class="form-control" min="1" value="5" required>
+                <input type="number" name="cantidadIngreso" class="form-control" min="1" value="1" required>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label class="form-label small fw-semibold">Motivo / Tipo de Ingreso</label>
               <select name="motivo" class="form-select">
-                <option value="Compra institucional">Compra institucional</option>
+                <option value="Compra institucional" selected>Compra institucional</option>
                 <option value="Donación">Donación</option>
                 <option value="Reposición por extravío">Reposición por extravío</option>
               </select>
             </div>
-          </div>
-
-          <div class="mb-3">
-            <label class="form-label small fw-semibold">Estante / Ubicación de Almacenamiento</label>
-            <input type="text" name="ubicacion"
-              th:value="${libroEncontrado != null ? libroEncontrado.ubicacion : 'Estante B - Nivel 2'}"
-              class="form-control">
+            <div class="col-md-4">
+              <label class="form-label small fw-semibold">Estado del Material</label>
+              <select name="estadoMaterial" class="form-select">
+                <option value="Nuevo / Excelente" selected>Nuevo / Excelente</option>
+                <option value="Buen Estado">Buen Estado</option>
+                <option value="Regular / Uso Leve">Regular / Uso Leve</option>
+              </select>
+            </div>
           </div>
 
           <div class="mb-4">

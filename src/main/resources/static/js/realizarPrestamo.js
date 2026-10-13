@@ -72,17 +72,19 @@ document.addEventListener('DOMContentLoaded', function () {
         if (nombreInput) nombreInput.value = lector.nombresApellidos || lector.nombre || '';
 
         const estado = lector.estadoCuenta || lector.estado || '';
-        const conSancion = estado.includes('Mora') || estado.includes('Sanción');
+        const conSancion = estado.includes('Mora') || estado.includes('Sanción') || estado.includes('Inhabilitado');
         const limiteAlcanzado = (lector.prestamosActivos >= 3) || estado.includes('Límite');
 
         if (conSancion || limiteAlcanzado) {
             if (boxEstadoLector) boxEstadoLector.className = 'alert alert-danger py-2 px-3 mb-0 d-flex align-items-center';
             if (iconoEstadoLector) iconoEstadoLector.className = 'bi bi-shield-x fs-5 me-2 text-danger';
-            if (textoEstadoLector) textoEstadoLector.textContent = conSancion ? 'Con Mora / Sanción' : 'Límite alcanzado (3/3)';
-            if (subtextoEstadoLector) subtextoEstadoLector.textContent = conSancion ? 'Usuario inhabilitado por penalización' : 'No puede solicitar más ejemplares';
-            if (msjLectorError) msjLectorError.textContent = conSancion 
-                ? 'El usuario registra sanciones activas y no puede solicitar libros.' 
-                : 'El usuario ya tiene el máximo permitido de préstamos activos (3/3).';
+            if (textoEstadoLector) textoEstadoLector.textContent = estado.includes('Inhabilitado') ? 'Inhabilitado' : (conSancion ? 'Con Mora / Sanción' : 'Límite alcanzado (3/3)');
+            if (subtextoEstadoLector) subtextoEstadoLector.textContent = estado.includes('Inhabilitado') ? 'Usuario con bloqueo total' : (conSancion ? 'Usuario inhabilitado por penalización' : 'No puede solicitar más ejemplares');
+            if (msjLectorError) msjLectorError.textContent = estado.includes('Inhabilitado')
+                ? 'El usuario se encuentra inhabilitado en el sistema y no puede solicitar libros.'
+                : (conSancion 
+                    ? 'El usuario registra sanciones activas y no puede solicitar libros.' 
+                    : 'El usuario ya tiene el máximo permitido de préstamos activos (3/3).');
             if (alertaLectorError) alertaLectorError.classList.remove('d-none');
             return false;
         }
@@ -102,22 +104,40 @@ document.addEventListener('DOMContentLoaded', function () {
         if (selectLibro) {
             const opt = selectLibro.options[selectLibro.selectedIndex];
             const stock = parseInt(opt ? opt.getAttribute('data-stock') : '0', 10);
-            if (selectLibro.value !== '' && stock > 0) {
-                libroValido = true;
-                if (alertaLibro) alertaLibro.classList.add('d-none');
-                if (boxStock) boxStock.classList.remove('d-none');
+            const estadoLibro = opt ? opt.getAttribute('data-estado') : '';
+
+            if (selectLibro.value !== '') {
+                if (estadoLibro === 'Deshabilitado') {
+                    libroValido = false;
+                    if (alertaLibro) {
+                        alertaLibro.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-1"></i> Este ejemplar se encuentra temporalmente deshabilitado por administración.';
+                        alertaLibro.classList.remove('d-none');
+                    }
+                    if (boxStock) boxStock.classList.add('d-none');
+                } else if (stock > 0) {
+                    libroValido = true;
+                    if (alertaLibro) alertaLibro.classList.add('d-none');
+                    if (boxStock) boxStock.classList.remove('d-none');
+                } else {
+                    libroValido = false;
+                    if (alertaLibro) {
+                        alertaLibro.innerHTML = '<i class="bi bi-exclamation-triangle-fill me-1"></i> Ejemplar no disponible o sin stock suficiente.';
+                        alertaLibro.classList.remove('d-none');
+                    }
+                    if (boxStock) boxStock.classList.add('d-none');
+                }
             } else {
-                if (alertaLibro) alertaLibro.classList.remove('d-none');
+                if (alertaLibro) alertaLibro.classList.add('d-none');
                 if (boxStock) boxStock.classList.add('d-none');
             }
         }
 
         let fechaValida = true;
         if (fEmision && fLimite && fEmision.value && fLimite.value) {
-            const d1 = new Date(fEmision.value);
-            const d2 = new Date(fLimite.value);
-            const dias = Math.ceil((d2 - d1) / (1000 * 3600 * 24));
-            if (dias > 15 || dias < 0) {
+            const d1 = new Date(fEmision.value + 'T00:00:00');
+            const d2 = new Date(fLimite.value + 'T00:00:00');
+            const diffDias = Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+            if (diffDias < 0 || diffDias > 15) {
                 fechaValida = false;
                 if (alertaDias) alertaDias.classList.remove('d-none');
                 fLimite.classList.add('is-invalid');
@@ -132,12 +152,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    if (fEmision && !fEmision.value) {
-        const hoy = new Date().toISOString().split('T')[0];
+    const hoy = new Date().toISOString().split('T')[0];
+    if (fEmision) {
         fEmision.value = hoy;
-        const limiteSugerido = new Date();
-        limiteSugerido.setDate(limiteSugerido.getDate() + 15);
-        if (fLimite) fLimite.value = limiteSugerido.toISOString().split('T')[0];
+        fEmision.setAttribute('min', hoy);
+    }
+    if (fLimite) {
+        fLimite.setAttribute('min', hoy);
+        const maxLimite = new Date();
+        maxLimite.setDate(maxLimite.getDate() + 15);
+        const maxLimiteStr = maxLimite.toISOString().split('T')[0];
+        fLimite.setAttribute('max', maxLimiteStr);
+        if (!fLimite.value) {
+            fLimite.value = maxLimiteStr;
+        }
     }
 
     if (dniInput) {
@@ -193,11 +221,19 @@ document.addEventListener('DOMContentLoaded', function () {
     if (formPrestamo) {
         formPrestamo.addEventListener('reset', function () {
             setTimeout(function () {
-                const hoy = new Date().toISOString().split('T')[0];
-                if (fEmision) fEmision.value = hoy;
-                const limiteSugerido = new Date();
-                limiteSugerido.setDate(limiteSugerido.getDate() + 15);
-                if (fLimite) fLimite.value = limiteSugerido.toISOString().split('T')[0];
+                const fechaHoy = new Date().toISOString().split('T')[0];
+                if (fEmision) {
+                    fEmision.value = fechaHoy;
+                    fEmision.setAttribute('min', fechaHoy);
+                }
+                if (fLimite) {
+                    fLimite.setAttribute('min', fechaHoy);
+                    const limiteMax = new Date();
+                    limiteMax.setDate(limiteMax.getDate() + 15);
+                    const limiteMaxStr = limiteMax.toISOString().split('T')[0];
+                    fLimite.setAttribute('max', limiteMaxStr);
+                    fLimite.value = limiteMaxStr;
+                }
                 verificarRestriccionCategoria();
                 validarTodo();
             }, 20);

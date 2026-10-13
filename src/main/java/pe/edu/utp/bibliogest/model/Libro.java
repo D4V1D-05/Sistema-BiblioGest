@@ -11,8 +11,11 @@ public class Libro {
     private Integer stockDisponible;
     private String ubicacion;
     private String estadoMaterial;
+    private String estado = "Habilitado";
 
-    public Libro() {}
+    public Libro() {
+        this.estado = "Habilitado";
+    }
 
     public Libro(String isbn, String titulo, String autor, String editorial, Integer anio, 
                  String categoria, Integer stockTotal, Integer stockDisponible, String ubicacion, String estadoMaterial) {
@@ -26,6 +29,7 @@ public class Libro {
         this.stockDisponible = stockDisponible;
         this.ubicacion = ubicacion;
         this.estadoMaterial = estadoMaterial;
+        this.estado = "Habilitado";
     }
 
     public Libro(String isbn, String titulo, String autor, String categoria, Integer anio, 
@@ -40,6 +44,7 @@ public class Libro {
         this.ubicacion = ubicacion;
         this.estadoMaterial = estadoMaterial;
         this.editorial = editorial;
+        this.estado = "Habilitado";
     }
 
     public String getIsbn() { return isbn; }
@@ -52,6 +57,8 @@ public class Libro {
     public void setEditorial(String editorial) { this.editorial = editorial; }
     public Integer getAnio() { return anio; }
     public void setAnio(Integer anio) { this.anio = anio; }
+    public Integer getAnioPublicacion() { return anio; }
+    public void setAnioPublicacion(Integer anioPublicacion) { this.anio = anioPublicacion; }
     public String getCategoria() { return categoria; }
     public void setCategoria(String categoria) { this.categoria = categoria; }
     public Integer getStockTotal() { return stockTotal; }
@@ -62,4 +69,6 @@ public class Libro {
     public void setUbicacion(String ubicacion) { this.ubicacion = ubicacion; }
     public String getEstadoMaterial() { return estadoMaterial; }
     public void setEstadoMaterial(String estadoMaterial) { this.estadoMaterial = estadoMaterial; }
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 }

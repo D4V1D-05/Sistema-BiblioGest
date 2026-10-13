@@ -6,6 +6,7 @@ public class RegistroIngreso {
     private String titulo;
     private String motivo;
     private int cantidad;
+    private String estadoMaterial;
 
     public RegistroIngreso() {}
 
@@ -15,6 +16,15 @@ public class RegistroIngreso {
         this.titulo = titulo;
         this.motivo = motivo;
         this.cantidad = cantidad;
+    }
+
+    public RegistroIngreso(String fecha, String isbn, String titulo, String motivo, int cantidad, String estadoMaterial) {
+        this.fecha = fecha;
+        this.isbn = isbn;
+        this.titulo = titulo;
+        this.motivo = motivo;
+        this.cantidad = cantidad;
+        this.estadoMaterial = estadoMaterial;
     }
 
     public String getFecha() { return fecha; }
@@ -27,4 +37,6 @@ public class RegistroIngreso {
     public void setMotivo(String motivo) { this.motivo = motivo; }
     public int getCantidad() { return cantidad; }
     public void setCantidad(int cantidad) { this.cantidad = cantidad; }
+    public String getEstadoMaterial() { return estadoMaterial; }
+    public void setEstadoMaterial(String estadoMaterial) { this.estadoMaterial = estadoMaterial; }
 }

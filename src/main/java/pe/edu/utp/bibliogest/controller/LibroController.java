@@ -107,12 +107,25 @@ public class LibroController {
         return "IngresoStock";
     }
 
+    @PostMapping("/libros/actualizar")
+    public String actualizarLibro(@RequestParam String isbn,
+                                  @RequestParam String titulo,
+                                  @RequestParam String autor,
+                                  @RequestParam String editorial,
+                                  @RequestParam String categoria,
+                                  @RequestParam int anioPublicacion,
+                                  @RequestParam String ubicacion,
+                                  @RequestParam String estado) {
+        libroService.actualizarLibro(isbn, titulo, autor, editorial, categoria, anioPublicacion, ubicacion, estado);
+        return "redirect:/inventario";
+    }
+
     @PostMapping("/inventario/ingreso/guardar")
     public String registrarIngresoStock(@RequestParam String isbn,
                                         @RequestParam int cantidadIngreso,
                                         @RequestParam String motivo,
-                                        @RequestParam(required = false) String ubicacion) {
-        libroService.abastecerStock(isbn, cantidadIngreso, motivo, ubicacion);
+                                        @RequestParam(required = false, defaultValue = "Nuevo / Excelente") String estadoMaterial) {
+        libroService.abastecerStock(isbn, cantidadIngreso, motivo, estadoMaterial);
         return "redirect:/inventario/ingreso?buscarIsbn=" + isbn;
     }
 }

@@ -42,14 +42,9 @@ public class LectorController {
     public String actualizarLector(@RequestParam String dni,
                                    @RequestParam String nombresApellidos,
                                    @RequestParam String correo,
-                                   @RequestParam(required = false) String telefono) {
-        lectorService.actualizarLector(dni, nombresApellidos, correo, telefono);
-        return "redirect:/lectores";
-    }
-
-    @PostMapping("/lectores/levantar-sancion")
-    public String levantarSancion(@RequestParam String dni) {
-        lectorService.levantarSancion(dni);
+                                   @RequestParam(required = false) String telefono,
+                                   @RequestParam String estadoCuenta) {
+        lectorService.actualizarLector(dni, nombresApellidos, correo, telefono, estadoCuenta);
         return "redirect:/lectores";
     }
 }

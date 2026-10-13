@@ -134,20 +134,20 @@
               <div class="mb-3">
                 <label class="form-label small fw-semibold">Título del Libro</label>
                 <select th:field="*{tituloLibro}" id="selectLibro" class="form-select" required>
-                  <option value="" disabled selected data-stock="0" data-categoria="">Seleccione el libro</option>
+                  <option value="" disabled selected data-stock="0" data-categoria="" data-estado="">Seleccione el libro</option>
                   <option th:each="lib : ${libros}" 
                           th:value="${lib.titulo}" 
                           th:data-isbn="${lib.isbn}" 
                           th:data-stock="${lib.stockDisponible}"
                           th:data-categoria="${lib.categoria}" 
+                          th:data-estado="${lib.estado}"
                           th:text="${lib.titulo + ' (' + lib.categoria + ' - Disp: ' + lib.stockDisponible + ')'}">
                   </option>
                 </select>
               </div>
               <div class="mb-3">
                 <label class="form-label small fw-semibold">Cantidad</label>
-                <input type="number" th:field="*{cantidad}" id="cantidadLibros" class="form-control" min="1" max="3"
-                  value="1" required>
+                <input type="number" th:field="*{cantidad}" id="cantidadLibro" class="form-control" value="1" min="1" max="1" readonly>
               </div>
               <div id="badgeStockVerificado" class="alert alert-info py-2 px-3 mb-0 d-flex align-items-center">
                 <i class="bi bi-box-seam me-2"></i>
@@ -168,7 +168,7 @@
               </h6>
               <div class="mb-3">
                 <label class="form-label small fw-semibold">Fecha de Salida / Emisión</label>
-                <input type="date" th:field="*{fechaEmision}" id="fechaEmision" class="form-control" required>
+                <input type="date" th:field="*{fechaEmision}" id="fechaEmision" class="form-control" readonly required>
               </div>
               <div class="mb-3">
                 <label class="form-label small fw-semibold">Fecha Límite de Devolución</label>
