@@ -1,5 +1,4 @@
 package pe.edu.utp.bibliogest.model;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -20,7 +19,6 @@ public class Libro {
 
     @Column(nullable = false)
     private String titulo;
-
     private String autor;
     private String editorial;
     private Integer anio;
@@ -36,6 +34,7 @@ public class Libro {
     }
 
     public Libro(String isbn, String titulo, String autor, String editorial, Integer anio,
+
                  String categoria, Integer stockTotal, Integer stockDisponible, String ubicacion, String estadoMaterial) {
         this.isbn = isbn;
         this.titulo = titulo;
@@ -51,6 +50,7 @@ public class Libro {
     }
 
     public Libro(String isbn, String titulo, String autor, String categoria, Integer anio,
+
                  Integer stockTotal, Integer stockDisponible, String ubicacion, String estadoMaterial, String editorial) {
         this.isbn = isbn;
         this.titulo = titulo;
@@ -64,7 +64,6 @@ public class Libro {
         this.editorial = editorial;
         this.estado = "Habilitado";
     }
-
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

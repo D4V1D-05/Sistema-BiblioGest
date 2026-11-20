@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+>>>>>>> 9f1cc3a771d1a2b8be4adec6e5b9f8a7caaada0d
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -21,23 +25,36 @@
     </properties>
 
     <dependencies>
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 9f1cc3a771d1a2b8be4adec6e5b9f8a7caaada0d
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+<<<<<<< HEAD
+=======
+     
+>>>>>>> 9f1cc3a771d1a2b8be4adec6e5b9f8a7caaada0d
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 9f1cc3a771d1a2b8be4adec6e5b9f8a7caaada0d
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
+<<<<<<< HEAD
 
 
         <dependency>
@@ -64,6 +81,8 @@
             <scope>runtime</scope>
         </dependency>
 
+=======
+>>>>>>> 9f1cc3a771d1a2b8be4adec6e5b9f8a7caaada0d
     </dependencies>
 
     <build>

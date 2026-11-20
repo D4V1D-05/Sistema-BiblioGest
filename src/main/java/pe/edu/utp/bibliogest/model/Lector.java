@@ -1,5 +1,4 @@
 package pe.edu.utp.bibliogest.model;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -38,6 +37,7 @@ public class Lector {
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 
+
     public String getNombreCompleto() { return nombre; }
     public void setNombreCompleto(String nombreCompleto) { this.nombre = nombreCompleto; }
 
@@ -59,6 +59,8 @@ public class Lector {
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
 
+
     public String getEstadoCuenta() { return estado; }
     public void setEstadoCuenta(String estadoCuenta) { this.estado = estadoCuenta; }
 }
+

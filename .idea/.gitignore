@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # === Entorno de IntelliJ IDEA ===
 .idea/
 *.iml
@@ -18,3 +19,15 @@ application.yml
 .DS_Store
 Thumbs.db
 *.log
+=======
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Ignored default folder with query files
+/queries/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+>>>>>>> 9f1cc3a771d1a2b8be4adec6e5b9f8a7caaada0d

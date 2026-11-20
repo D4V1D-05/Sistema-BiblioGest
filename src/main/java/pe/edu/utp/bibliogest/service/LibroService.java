@@ -48,6 +48,7 @@ public class LibroService {
             libro.setCategoria(categoria);
             libro.setAnioPublicacion(anioPublicacion);
             libro.setUbicacion(ubicacion);
+
             libro.setEstado(estado);
             libroRepository.save(libro);
         }
@@ -79,3 +80,4 @@ public class LibroService {
         }
     }
 }
+

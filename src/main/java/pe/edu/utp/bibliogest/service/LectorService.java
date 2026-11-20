@@ -51,6 +51,7 @@ public class LectorService {
             }
 
             repository.save(lector);
+
         }
     }
 
@@ -59,6 +60,7 @@ public class LectorService {
     }
 
     public void levantarSancion(String dni) {
+
         Lector lector = buscarPorDni(dni);
         if (lector != null) {
             lector.setEstadoCuenta("Habilitado");
@@ -67,3 +69,4 @@ public class LectorService {
         }
     }
 }
+

@@ -1,5 +1,4 @@
 package pe.edu.utp.bibliogest.model;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +12,7 @@ public class RegistroIngreso {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     private String fecha;
     private String isbn;
@@ -40,6 +40,7 @@ public class RegistroIngreso {
         this.estadoMaterial = estadoMaterial;
     }
 
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -61,3 +62,4 @@ public class RegistroIngreso {
     public String getEstadoMaterial() { return estadoMaterial; }
     public void setEstadoMaterial(String estadoMaterial) { this.estadoMaterial = estadoMaterial; }
 }
+

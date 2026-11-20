@@ -1,5 +1,4 @@
 package pe.edu.utp.bibliogest.model;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -12,6 +11,7 @@ public class Prestamo {
     @Id
     @Column(nullable = false, unique = true)
     private String id;
+
 
     private String dniLector;
     private String nombreLector;
@@ -42,7 +42,6 @@ public class Prestamo {
 
     public String getId() { return id; }
     public void setId(String id) { this.id = id; }
-
     public String getIdPrestamo() { return id; }
     public void setIdPrestamo(String idPrestamo) { this.id = idPrestamo; }
 
