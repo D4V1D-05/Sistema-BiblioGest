@@ -1,0 +1,20 @@
+# === Entorno de IntelliJ IDEA ===
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# === Maven (Ignorar la carpeta de compilación) ===
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# === Archivos de configuración sensibles ===
+# ¡NUNCA subas application.properties si tiene contraseñas reales!
+application.properties
+application.yml
+.env
+
+# === Archivos del sistema ===
+.DS_Store
+Thumbs.db
+*.log
