@@ -31,16 +31,19 @@ public class LibroController {
                                Model model) {
         List<Libro> libros = libroService.listarTodos();
 
+
         if (buscar != null && !buscar.isBlank()) {
             String q = buscar.toLowerCase().trim();
             libros = libros.stream()
-                    .filter(l -> l.getTitulo().toLowerCase().contains(q) || 
-                                 l.getAutor().toLowerCase().contains(q) || 
-                                 l.getIsbn().toLowerCase().contains(q))
+                    .filter(l -> (l.getTitulo() != null && l.getTitulo().toLowerCase().contains(q)) ||
+                            (l.getAutor() != null && l.getAutor().toLowerCase().contains(q)) ||
+                            (l.getIsbn() != null && l.getIsbn().toLowerCase().contains(q)))
                     .toList();
-        } else if (categoria != null && !categoria.isBlank()) {
+        }
+
+        else if (categoria != null && !categoria.isBlank()) {
             libros = libros.stream()
-                    .filter(l -> l.getCategoria().equalsIgnoreCase(categoria.trim()))
+                    .filter(l -> l.getCategoria() != null && l.getCategoria().equalsIgnoreCase(categoria.trim()))
                     .toList();
         }
 
@@ -97,6 +100,7 @@ public class LibroController {
                 errorIsbn = true;
             }
         } else {
+
             libroEncontrado = libroService.buscarPorIsbn("978-0132350884");
         }
 

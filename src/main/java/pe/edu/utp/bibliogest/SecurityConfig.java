@@ -1,4 +1,4 @@
-package pe.edu.utp.bibliogest.config;
+package pe.edu.utp.bibliogest;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
