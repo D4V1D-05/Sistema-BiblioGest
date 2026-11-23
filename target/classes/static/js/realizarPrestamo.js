@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     msjLectorError.textContent = 'El usuario ya tiene el máximo permitido de préstamos activos (3/3).';
                 }
             }
-            
+
             if (alertaLectorError) alertaLectorError.classList.remove('d-none');
             return false;
         }

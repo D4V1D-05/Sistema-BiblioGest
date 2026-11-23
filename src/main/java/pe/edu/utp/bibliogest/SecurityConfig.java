@@ -10,16 +10,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import pe.edu.utp.bibliogest.security.JwtAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthFilter) throws Exception {
+
         http
+                .csrf(csrf -> csrf.disable()) // Desactivamos CSRF para APIs REST
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/css/**", "/js/**", "/img/**", "/login").permitAll()
+                        .requestMatchers("/", "/css/**", "/js/**", "/img/**", "/login", "/api/auth/**").permitAll()
+                        .requestMatchers("/api/**").authenticated()
                         .requestMatchers("/libros/nuevo", "/inventario/ingreso").hasRole("ADMIN")
                         .requestMatchers("/libros", "/lectores", "/prestamos", "/inventario").hasAnyRole("ADMIN", "BIBLIOTECARIO")
                         .requestMatchers("/operaciones", "/novedades", "/contacto").hasAnyRole("ADMIN", "BIBLIOTECARIO", "LECTOR")
@@ -42,7 +47,20 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
+                )
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            if (request.getRequestURI().startsWith("/api/")) {
+                                response.setStatus(jakarta.servlet.http.HttpServletResponse.SC_UNAUTHORIZED);
+                                response.setContentType("application/json");
+                                response.getWriter().write("{\"error\": \"No autorizado. Por favor, proporcione un token JWT válido.\"}");
+                            } else {
+                                response.sendRedirect("/login");
+                            }
+                        })
                 );
+
         return http.build();
     }
 
@@ -51,7 +69,6 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService(PasswordEncoder encoder) {
@@ -74,5 +91,9 @@ public class SecurityConfig {
                 .build();
 
         return new InMemoryUserDetailsManager(admin, bibliotecario, lector);
+    }
+    @Bean
+    public org.springframework.security.authentication.AuthenticationManager authenticationManager(org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
     }
 }

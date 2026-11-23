@@ -5,31 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96393668-3800-4a5c-932f-9be9118d790b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/rest/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/rest/AuthRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/rest/AuthResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/rest/LibroRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/security/JwtService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/PrestamoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/PrestamoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/model/Lector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/model/Lector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/service/LectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/service/LectorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/service/PrestamoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/service/PrestamoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/realizarPrestamo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/realizarPrestamo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Estado.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Estado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/IngresoStock.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/IngresoStock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/MarcarDevolucion.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/MarcarDevolucion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/RealizarPrestamos.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/RealizarPrestamos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/bibliogest-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/bibliogest-1.0.0.jar.original" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/PrestamoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/PrestamoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/model/Lector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/model/Lector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/service/LectorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/service/LectorService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/service/PrestamoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/service/PrestamoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/repository/PrestamoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/repository/PrestamoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/SecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/repository/PrestamoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/repository/PrestamoRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/js/realizarPrestamo.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/realizarPrestamo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Estado.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Estado.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/IngresoStock.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/IngresoStock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/MarcarDevolucion.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/MarcarDevolucion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/RealizarPrestamos.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/RealizarPrestamos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
@@ -65,6 +57,9 @@
   &quot;fromUser&quot;: false
 }</component>
   <component name="ProjectId" id="3LLmakgOULEFmP5s5yLl73Laag0" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
