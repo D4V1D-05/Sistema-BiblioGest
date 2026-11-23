@@ -5,25 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96393668-3800-4a5c-932f-9be9118d790b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/rest/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/rest/AuthRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/rest/AuthResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/rest/LibroRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/security/JwtService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/repository/PrestamoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/repository/PrestamoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/SecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/SecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/HomeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/repository/PrestamoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/repository/PrestamoRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/js/realizarPrestamo.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/realizarPrestamo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
