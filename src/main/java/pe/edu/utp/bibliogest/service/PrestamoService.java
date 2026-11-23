@@ -59,7 +59,7 @@ public class PrestamoService {
             libroRepo.save(libro);
         }
 
-        // CAMBIO JPA: Usamos findByDni y save
+
         Lector lector = lectorRepo.findByDni(prestamo.getDniLector()).orElse(null);
         if (lector != null) {
             lector.setPrestamosActivos(lector.getPrestamosActivos() + cantidad);
@@ -74,7 +74,7 @@ public class PrestamoService {
     }
 
     public boolean procesarDevolucion(String prestamoId, String fechaDevolucion, String observaciones) {
-        // CAMBIO JPA: findById
+
         Prestamo prestamo = prestamoRepo.findById(prestamoId).orElse(null);
         if (prestamo == null) {
             return false;
@@ -108,18 +108,18 @@ public class PrestamoService {
     public Prestamo buscarPorCodigoODni(String query) {
         if (query == null || query.isBlank()) return null;
         String q = query.trim().toUpperCase();
-        // CAMBIO JPA: findAll
+
         return prestamoRepo.findAll().stream()
                 .filter(p -> !"Devuelto".equalsIgnoreCase(p.getEstado()))
                 .filter(p -> (p.getId() != null && p.getId().toUpperCase().contains(q)) ||
                         (p.getIdPrestamo() != null && p.getIdPrestamo().toUpperCase().contains(q)) ||
-                        (p.getDniLector() != null && p.getDniLector().contains(q)))
+                        (p.getDniLector() != null && p.getDniLector().toUpperCase().contains(q)))
                 .findFirst()
                 .orElse(null);
     }
 
     public boolean devolverEjemplar(String idPrestamo, String condicion, String penalizacion, String observaciones) {
-        // CAMBIO JPA: findAll
+
         Prestamo prestamo = prestamoRepo.findAll().stream()
                 .filter(p -> (p.getId() != null && p.getId().equalsIgnoreCase(idPrestamo)) ||
                         (p.getIdPrestamo() != null && p.getIdPrestamo().equalsIgnoreCase(idPrestamo)))
@@ -146,6 +146,11 @@ public class PrestamoService {
                 Lector lector = lectorRepo.findByDni(prestamo.getDniLector()).orElse(null);
                 if (lector != null) {
                     lector.setEstadoCuenta("Con Mora / Sanción");
+
+                    if (penalizacion.contains("Mora")) {
+                        java.time.LocalDate fechaFin = java.time.LocalDate.now().plusDays(7);
+                        lector.setFechaFinSancion(fechaFin.toString());
+                    }
                     lectorRepo.save(lector);
                 }
             } else {

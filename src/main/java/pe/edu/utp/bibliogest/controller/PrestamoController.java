@@ -1,5 +1,6 @@
 package pe.edu.utp.bibliogest.controller;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,8 +38,16 @@ public class PrestamoController {
     }
 
     @PostMapping("/prestamos/guardar")
-    public String guardarPrestamo(@ModelAttribute Prestamo prestamo) {
-        prestamoService.registrarPrestamo(prestamo);
+    public String guardarPrestamo(@ModelAttribute Prestamo prestamo, RedirectAttributes redirectAttributes) {
+        boolean registrado = prestamoService.registrarPrestamo(prestamo);
+
+        if (registrado) {
+            redirectAttributes.addFlashAttribute("codigoGenerado", prestamo.getId());
+            redirectAttributes.addFlashAttribute("mensajeExito", "¡Préstamo registrado exitosamente!");
+        } else {
+            redirectAttributes.addFlashAttribute("mensajeError", "No se pudo registrar el préstamo. Verifique el stock.");
+        }
+
         return "redirect:/prestamos/estado";
     }
 

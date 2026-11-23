@@ -20,8 +20,20 @@ public class LectorService {
     }
 
     public Lector buscarPorDni(String dni) {
+        Lector lector = repository.findByDni(dni).orElse(null);
 
-        return repository.findByDni(dni).orElse(null);
+        if (lector != null && lector.getFechaFinSancion() != null) {
+            java.time.LocalDate fechaFin = java.time.LocalDate.parse(lector.getFechaFinSancion());
+            java.time.LocalDate hoy = java.time.LocalDate.now();
+
+            if (hoy.isAfter(fechaFin) || hoy.isEqual(fechaFin)) {
+                lector.setEstadoCuenta("Habilitado");
+                lector.setFechaFinSancion(null);
+                repository.save(lector);
+            }
+        }
+
+        return lector;
     }
 
     public void guardar(Lector lector) {

@@ -14,7 +14,7 @@ public class Lector {
 
     @Column(nullable = false)
     private String nombre;
-
+    private String fechaFinSancion;
     private String correo;
     private String telefono;
     private Integer prestamosActivos;
@@ -60,7 +60,26 @@ public class Lector {
     public void setEstado(String estado) { this.estado = estado; }
 
 
+    public String getFechaFinSancion() { return fechaFinSancion; }
+    public void setFechaFinSancion(String fechaFinSancion) { this.fechaFinSancion = fechaFinSancion; }
+
+
     public String getEstadoCuenta() { return estado; }
     public void setEstadoCuenta(String estadoCuenta) { this.estado = estadoCuenta; }
+
+    public long getDiasSancionRestantes() {
+        if (fechaFinSancion == null || fechaFinSancion.isEmpty()) {
+            return 0;
+        }
+        try {
+            java.time.LocalDate fin = java.time.LocalDate.parse(fechaFinSancion);
+            java.time.LocalDate hoy = java.time.LocalDate.now();
+
+            long dias = java.time.temporal.ChronoUnit.DAYS.between(hoy, fin);
+            return dias > 0 ? dias : 0;
+        } catch (Exception e) {
+            return 0;
+        }
+    }
 }
 

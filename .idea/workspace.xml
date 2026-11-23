@@ -7,41 +7,31 @@
     <list default="true" id="96393668-3800-4a5c-932f-9be9118d790b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/LibroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/LibroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/PrestamoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/PrestamoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/model/Lector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/model/Lector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/service/LectorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/service/LectorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/service/PrestamoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/service/PrestamoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Contacto.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Contacto.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/realizarPrestamo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/realizarPrestamo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Estado.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Estado.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/IngresoStock.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/IngresoStock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Lectores.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Lectores.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Libros.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Libros.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/MarcarDevolucion.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/MarcarDevolucion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Novedades.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Novedades.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/NuevoLibro.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/NuevoLibro.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/RealizarPrestamos.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/RealizarPrestamos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Reportes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Reportes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/config/SecurityConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/LibroController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/LibroController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/bibliogest-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/bibliogest-1.0.0.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/PrestamoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/PrestamoController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/model/Lector.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/model/Lector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/model/Libro.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/model/Libro.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/model/Prestamo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/model/Prestamo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/model/RegistroIngreso.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/model/RegistroIngreso.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/service/LectorService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/service/LectorService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/service/LibroService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/service/LibroService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Contacto.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Contacto.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/service/PrestamoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/service/PrestamoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/js/realizarPrestamo.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/js/realizarPrestamo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/Estado.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Estado.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/IngresoStock.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/IngresoStock.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Lectores.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Lectores.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Libros.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Libros.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/MarcarDevolucion.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/MarcarDevolucion.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Novedades.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Novedades.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/NuevoLibro.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/NuevoLibro.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/RealizarPrestamos.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/RealizarPrestamos.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/Reportes.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Reportes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,18 +48,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "D4V1D-05"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;D4V1D-05&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/D4V1D-05/Sistema-BiblioGest",
-    "accountId": "3aa9d3b2-db13-469b-9894-dfe8c045f630"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/D4V1D-05/Sistema-BiblioGest&quot;,
+    &quot;accountId&quot;: &quot;3aa9d3b2-db13-469b-9894-dfe8c045f630&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0,
   &quot;fromUser&quot;: false
@@ -79,35 +69,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.bibliogest [clean].executor": "Run",
-    "Maven.bibliogest [spring-boot:run].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.BibliogestApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Sistema-BiblioGest-main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.bibliogest [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.bibliogest [spring-boot:run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.BibliogestApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Sistema-BiblioGest-main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
   }
-}]]></component>
+}</component>
   <component name="RunAnythingCache">
     <option name="myCommands">
-      <command value="mvn spring-boot:run" />
       <command value="mvn clean" />
+      <command value="mvn spring-boot:run" />
     </option>
   </component>
   <component name="RunManager">

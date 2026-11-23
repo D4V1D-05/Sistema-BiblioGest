@@ -78,13 +78,32 @@ document.addEventListener('DOMContentLoaded', function () {
         if (conSancion || limiteAlcanzado) {
             if (boxEstadoLector) boxEstadoLector.className = 'alert alert-danger py-2 px-3 mb-0 d-flex align-items-center';
             if (iconoEstadoLector) iconoEstadoLector.className = 'bi bi-shield-x fs-5 me-2 text-danger';
-            if (textoEstadoLector) textoEstadoLector.textContent = estado.includes('Inhabilitado') ? 'Inhabilitado' : (conSancion ? 'Con Mora / Sanción' : 'Límite alcanzado (3/3)');
-            if (subtextoEstadoLector) subtextoEstadoLector.textContent = estado.includes('Inhabilitado') ? 'Usuario con bloqueo total' : (conSancion ? 'Usuario inhabilitado por penalización' : 'No puede solicitar más ejemplares');
-            if (msjLectorError) msjLectorError.textContent = estado.includes('Inhabilitado')
-                ? 'El usuario se encuentra inhabilitado en el sistema y no puede solicitar libros.'
-                : (conSancion 
-                    ? 'El usuario registra sanciones activas y no puede solicitar libros.' 
-                    : 'El usuario ya tiene el máximo permitido de préstamos activos (3/3).');
+            if (textoEstadoLector) {
+                textoEstadoLector.textContent = estado.includes('Inhabilitado') ? 'Inhabilitado' : (conSancion ? 'Con Mora / Sanción' : 'Límite alcanzado (3/3)');
+            }
+
+            if (subtextoEstadoLector) {
+                if (conSancion) {
+                    let diasRestantes = lector.diasSancionRestantes !== undefined ? lector.diasSancionRestantes : 'algunos';
+                    subtextoEstadoLector.textContent = `Usuario inhabilitado. Le quedan ${diasRestantes} días de sanción.`;
+                } else if (limiteAlcanzado) {
+                    subtextoEstadoLector.textContent = 'No puede solicitar más ejemplares (Límite de 3).';
+                } else {
+                    subtextoEstadoLector.textContent = 'Usuario con bloqueo total.';
+                }
+            }
+
+            if (msjLectorError) {
+                if (estado.includes('Inhabilitado')) {
+                    msjLectorError.textContent = 'El usuario se encuentra inhabilitado en el sistema y no puede solicitar libros.';
+                } else if (conSancion) {
+                    let diasRestantes = lector.diasSancionRestantes !== undefined ? lector.diasSancionRestantes : 'algunos';
+                    msjLectorError.textContent = `El usuario registra una sanción activa. Le quedan ${diasRestantes} días para volver a solicitar libros.`;
+                } else {
+                    msjLectorError.textContent = 'El usuario ya tiene el máximo permitido de préstamos activos (3/3).';
+                }
+            }
+
             if (alertaLectorError) alertaLectorError.classList.remove('d-none');
             return false;
         }

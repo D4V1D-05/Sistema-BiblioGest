@@ -94,6 +94,38 @@
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<div class="modal fade" id="modalCodigoPrestamo" tabindex="-1" aria-labelledby="modalCodigoLabel" aria-hidden="true" th:if="${codigoGenerado != null}">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="modalCodigoLabel"><i class="bi bi-check-circle-fill me-2"></i>¡Préstamo Registrado!</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center py-4">
+        <p class="mb-3">Guarda este código para consultar el estado de tu préstamo:</p>
+        <h1 class="display-5 fw-bold text-primary font-monospace" id="textoCodigo" th:text="${codigoGenerado}">PR-0000</h1>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-primary" onclick="copiarCodigo()">
+          <i class="bi bi-clipboard me-1"></i> Copiar Código
+        </button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script th:if="${codigoGenerado != null}">
+  document.addEventListener("DOMContentLoaded", function() {
+    var myModal = new bootstrap.Modal(document.getElementById('modalCodigoPrestamo')); myModal.show(); });
+
+  function copiarCodigo() { var codigo = document.getElementById("textoCodigo").innerText;
+    navigator.clipboard.writeText(codigo).then(() => { alert("¡Código copiado al portapapeles: " + codigo + "!"); });
+
+  }
+</script>
 </body>
 
 </html>
