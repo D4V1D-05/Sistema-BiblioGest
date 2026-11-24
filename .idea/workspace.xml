@@ -6,8 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="96393668-3800-4a5c-932f-9be9118d790b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/repository/PrestamoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/pe/edu/utp/bibliogest/repository/PrestamoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/Reportes.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/Reportes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/HomeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/controller/HomeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/repository/PrestamoRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/pe/edu/utp/bibliogest/repository/PrestamoRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/Reportes.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/Reportes.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +42,13 @@
     &quot;accountId&quot;: &quot;3aa9d3b2-db13-469b-9894-dfe8c045f630&quot;
   }
 }</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="workOffline" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0,
   &quot;fromUser&quot;: false
